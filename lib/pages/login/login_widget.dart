@@ -339,8 +339,32 @@ class _LoginWidgetState extends State<LoginWidget>
                                     token: currentJwtToken,
                                   );
                                   _shouldSetState = true;
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: Text('Old ID'),
+                                        content:
+                                            Text(SupabaseGroup.getUserInfoCall
+                                                .oldUserId(
+                                                  (_model.userInfoOutput
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                )
+                                                .toString()),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
                                   if ((_model.userInfoOutput?.succeeded ??
-                                      true)) {
+                                          true) &&
+                                      (_model.userInfoOutput != null)) {
                                     setState(() {
                                       FFAppState().oldMerchantId = SupabaseGroup
                                           .getUserInfoCall
