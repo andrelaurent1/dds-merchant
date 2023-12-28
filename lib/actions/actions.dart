@@ -11,12 +11,13 @@ import 'package:flutter/material.dart';
 Future<DdsPinStruct?> preparePIN(
   BuildContext context, {
   String? pin,
+  required String? oldUserId,
 }) async {
   ApiCallResponse? genKeyResult;
   DdsPinStruct? encryptedPIN;
 
   genKeyResult = await OldDDSGroup.generateKeyCall.call(
-    requestid: FFAppState().oldMerchantId,
+    requestid: oldUserId,
   );
   if ((genKeyResult?.statusCode ?? 200) == 200) {
     encryptedPIN = await actions.encryptPin(
