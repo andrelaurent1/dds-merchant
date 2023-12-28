@@ -16,7 +16,7 @@ Future<DdsPinStruct?> preparePIN(
   DdsPinStruct? encryptedPIN;
 
   genKeyResult = await OldDDSGroup.generateKeyCall.call(
-    requestid: FFAppState().oldUserId,
+    requestid: FFAppState().oldMerchantId,
   );
   if ((genKeyResult?.statusCode ?? 200) == 200) {
     encryptedPIN = await actions.encryptPin(

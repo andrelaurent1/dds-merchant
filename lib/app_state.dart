@@ -155,10 +155,10 @@ class FFAppState extends ChangeNotifier {
     _DateSold.insert(_index, _value);
   }
 
-  String _oldUserId = '';
-  String get oldUserId => _oldUserId;
-  set oldUserId(String _value) {
-    _oldUserId = _value;
+  String _oldMerchantId = '';
+  String get oldMerchantId => _oldMerchantId;
+  set oldMerchantId(String _value) {
+    _oldMerchantId = _value;
   }
 }
 

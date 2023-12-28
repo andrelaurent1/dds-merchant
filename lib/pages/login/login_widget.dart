@@ -342,7 +342,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                   if ((_model.userInfoOutput?.succeeded ??
                                       true)) {
                                     setState(() {
-                                      FFAppState().oldUserId = SupabaseGroup
+                                      FFAppState().oldMerchantId = SupabaseGroup
                                           .getUserInfoCall
                                           .oldUserId(
                                             (_model.userInfoOutput?.jsonBody ??

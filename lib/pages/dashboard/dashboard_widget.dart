@@ -571,7 +571,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                               .headlineSmall,
                                                     ),
                                                     Text(
-                                                      'OldUserId: ${FFAppState().oldUserId}',
+                                                      'OldMerchantId: ${FFAppState().oldMerchantId}',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
