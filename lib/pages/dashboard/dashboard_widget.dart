@@ -570,27 +570,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                   context)
                                                               .headlineSmall,
                                                     ),
-                                                    Text(
-                                                      'OldMerchantId: ${FFAppState().oldMerchantId}',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .headlineSmall,
-                                                    ),
-                                                    Text(
-                                                      'Auth User Id: ${currentUserUid}',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .headlineSmall,
-                                                    ),
-                                                    Text(
-                                                      'Auth User Token: ${currentJwtToken}',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .headlineSmall,
-                                                    ),
                                                     Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
