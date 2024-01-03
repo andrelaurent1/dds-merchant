@@ -2,6 +2,7 @@ import '/backend/supabase/supabase.dart';
 import '/cash/components/master_side_nav/master_side_nav_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -20,7 +21,7 @@ class ManageInventoryModel extends FlutterFlowModel<ManageInventoryWidget> {
 
   final unfocusNode = FocusNode();
   // Model for MasterSideNav component.
-  late MasterSideNavModel masterSideNavModel;
+  late MasterSideNavModel masterSideNavModel1;
   // State field(s) for productName widget.
   FocusNode? productNameFocusNode;
   TextEditingController? productNameController;
@@ -32,21 +33,26 @@ class ManageInventoryModel extends FlutterFlowModel<ManageInventoryWidget> {
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
+  // Model for MasterSideNav component.
+  late MasterSideNavModel masterSideNavModel2;
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
-    masterSideNavModel = createModel(context, () => MasterSideNavModel());
+    masterSideNavModel1 = createModel(context, () => MasterSideNavModel());
+    masterSideNavModel2 = createModel(context, () => MasterSideNavModel());
   }
 
   void dispose() {
     unfocusNode.dispose();
-    masterSideNavModel.dispose();
+    masterSideNavModel1.dispose();
     productNameFocusNode?.dispose();
     productNameController?.dispose();
 
     categoryNameFocusNode?.dispose();
     categoryNameController?.dispose();
+
+    masterSideNavModel2.dispose();
   }
 
   /// Action blocks are added here.

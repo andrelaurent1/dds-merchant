@@ -160,6 +160,12 @@ class FFAppState extends ChangeNotifier {
   set oldMerchantId(String _value) {
     _oldMerchantId = _value;
   }
+
+  String _pinStatus = '';
+  String get pinStatus => _pinStatus;
+  set pinStatus(String _value) {
+    _pinStatus = _value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

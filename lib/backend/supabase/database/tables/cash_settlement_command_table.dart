@@ -50,4 +50,19 @@ class CashSettlementCommandTableRow extends SupabaseDataRow {
 
   double? get profitSharing => getField<double>('profit_sharing');
   set profitSharing(double? value) => setField<double>('profit_sharing', value);
+
+  String? get status => getField<String>('status');
+  set status(String? value) => setField<String>('status', value);
+
+  String? get pin => getField<String>('pin');
+  set pin(String? value) => setField<String>('pin', value);
+
+  String? get pinKey => getField<String>('pin_key');
+  set pinKey(String? value) => setField<String>('pin_key', value);
+
+  String? get pinNonce => getField<String>('pin_nonce');
+  set pinNonce(String? value) => setField<String>('pin_nonce', value);
+
+  String? get pinRequestid => getField<String>('pin_requestid');
+  set pinRequestid(String? value) => setField<String>('pin_requestid', value);
 }

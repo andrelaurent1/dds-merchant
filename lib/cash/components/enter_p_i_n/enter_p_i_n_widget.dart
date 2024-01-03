@@ -1,6 +1,7 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
+import '/cash/transaction_successfull_pop_up/transaction_successfull_pop_up_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -305,8 +306,39 @@ class _EnterPINWidgetState extends State<EnterPINWidget>
                                                   widget.cashOutAmount,
                                               profitSharing:
                                                   widget.profitSharing,
+                                              pinData: DdsPinStruct(
+                                                pin: _model.pinResult?.pin,
+                                                key: _model.pinResult?.key,
+                                                nonce: _model.pinResult?.nonce,
+                                                requestid:
+                                                    _model.pinResult?.requestid,
+                                              ),
                                             );
-                                            Navigator.pop(context);
+                                            setState(() {
+                                              _model.pinCodeController?.clear();
+                                            });
+                                            if (FFAppState().pinStatus ==
+                                                'paid') {
+                                              Navigator.pop(context);
+                                              FFAppState().pinStatus = '';
+                                              await showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                enableDrag: false,
+                                                context: context,
+                                                builder: (context) {
+                                                  return Padding(
+                                                    padding:
+                                                        MediaQuery.viewInsetsOf(
+                                                            context),
+                                                    child:
+                                                        TransactionSuccessfullPopUpWidget(),
+                                                  );
+                                                },
+                                              ).then((value) =>
+                                                  safeSetState(() {}));
+                                            }
                                           } else {
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(

@@ -2,9 +2,11 @@ import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/cash/components/master_side_nav/master_side_nav_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -104,16 +106,36 @@ class _DashboardWidgetState extends State<DashboardWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        drawer: Drawer(
+          elevation: 16.0,
+          child: Visibility(
+            visible: responsiveVisibility(
+              context: context,
+              tablet: false,
+              tabletLandscape: false,
+              desktop: false,
+            ),
+            child: wrapWithModel(
+              model: _model.masterSideNavModel2,
+              updateCallback: () => setState(() {}),
+              child: MasterSideNavWidget(),
+            ),
+          ),
+        ),
         body: SafeArea(
           top: true,
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
-              wrapWithModel(
-                model: _model.masterSideNavModel,
-                updateCallback: () => setState(() {}),
-                child: MasterSideNavWidget(),
-              ),
+              if (responsiveVisibility(
+                context: context,
+                phone: false,
+              ))
+                wrapWithModel(
+                  model: _model.masterSideNavModel1,
+                  updateCallback: () => setState(() {}),
+                  child: MasterSideNavWidget(),
+                ),
               Expanded(
                 child: Align(
                   alignment: AlignmentDirectional(0.0, -1.0),
@@ -188,260 +210,187 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                       ],
                                     ),
                                   ),
+                                  if (responsiveVisibility(
+                                    context: context,
+                                    tablet: false,
+                                    tabletLandscape: false,
+                                    desktop: false,
+                                  ))
+                                    Align(
+                                      alignment: AlignmentDirectional(1.0, 0.0),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(10.0),
+                                        child: FlutterFlowIconButton(
+                                          borderRadius: 20.0,
+                                          borderWidth: 1.0,
+                                          buttonSize: 40.0,
+                                          icon: Icon(
+                                            Icons.menu,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 24.0,
+                                          ),
+                                          onPressed: () async {
+                                            scaffoldKey.currentState!
+                                                .openDrawer();
+                                          },
+                                        ),
+                                      ),
+                                    ),
                                 ],
                               ),
-                              Container(
-                                width: double.infinity,
-                                height: 140.0,
-                                constraints: BoxConstraints(
-                                  maxHeight: 140.0,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 4.0, 0.0, 4.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
+                              Padding(
+                                padding: EdgeInsets.all(16.0),
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                  ),
+                                  child: Wrap(
+                                    spacing: 0.0,
+                                    runSpacing: 0.0,
+                                    alignment: WrapAlignment.start,
+                                    crossAxisAlignment:
+                                        WrapCrossAlignment.start,
+                                    direction: Axis.horizontal,
+                                    runAlignment: WrapAlignment.start,
+                                    verticalDirection: VerticalDirection.down,
+                                    clipBehavior: Clip.none,
                                     children: [
-                                      Expanded(
-                                        child: Align(
-                                          alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 8.0, 16.0, 8.0),
-                                            child: FutureBuilder<
-                                                List<
-                                                    StoreMerchantUnsettledBalanceRow>>(
-                                              future:
-                                                  StoreMerchantUnsettledBalanceTable()
-                                                      .querySingleRow(
-                                                queryFn: (q) => q.eq(
-                                                  'merchant_id',
-                                                  currentUserUid,
+                                      Padding(
+                                        padding: EdgeInsets.all(10.0),
+                                        child: FutureBuilder<
+                                            List<
+                                                StoreMerchantUnsettledBalanceRow>>(
+                                          future:
+                                              StoreMerchantUnsettledBalanceTable()
+                                                  .querySingleRow(
+                                            queryFn: (q) => q.eq(
+                                              'merchant_id',
+                                              currentUserUid,
+                                            ),
+                                          ),
+                                          builder: (context, snapshot) {
+                                            // Customize what your widget looks like when it's loading.
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                child: SizedBox(
+                                                  width: 50.0,
+                                                  height: 50.0,
+                                                  child: SpinKitRipple(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondary,
+                                                    size: 50.0,
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                            List<StoreMerchantUnsettledBalanceRow>
+                                                taskDetailsStoreMerchantUnsettledBalanceRowList =
+                                                snapshot.data!;
+                                            final taskDetailsStoreMerchantUnsettledBalanceRow =
+                                                taskDetailsStoreMerchantUnsettledBalanceRowList
+                                                        .isNotEmpty
+                                                    ? taskDetailsStoreMerchantUnsettledBalanceRowList
+                                                        .first
+                                                    : null;
+                                            return Container(
+                                              width: 350.0,
+                                              height: 120.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    blurRadius: 4.0,
+                                                    color: Color(0x33000000),
+                                                    offset: Offset(0.0, 2.0),
+                                                  )
+                                                ],
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBackground,
+                                                  width: 2.0,
                                                 ),
                                               ),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 50.0,
-                                                      height: 50.0,
-                                                      child: SpinKitRipple(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
-                                                        size: 50.0,
+                                              child: Padding(
+                                                padding: EdgeInsets.all(12.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      valueOrDefault<String>(
+                                                        formatNumber(
+                                                          taskDetailsStoreMerchantUnsettledBalanceRow
+                                                              ?.unsettledBalance,
+                                                          formatType: FormatType
+                                                              .decimal,
+                                                          decimalType:
+                                                              DecimalType
+                                                                  .commaDecimal,
+                                                          currency: 'Rp',
+                                                        ),
+                                                        'Rp0',
+                                                      ).maybeHandleOverflow(
+                                                        maxChars: 25,
+                                                        replacement: '…',
                                                       ),
-                                                    ),
-                                                  );
-                                                }
-                                                List<StoreMerchantUnsettledBalanceRow>
-                                                    taskDetailsStoreMerchantUnsettledBalanceRowList =
-                                                    snapshot.data!;
-                                                final taskDetailsStoreMerchantUnsettledBalanceRow =
-                                                    taskDetailsStoreMerchantUnsettledBalanceRowList
-                                                            .isNotEmpty
-                                                        ? taskDetailsStoreMerchantUnsettledBalanceRowList
-                                                            .first
-                                                        : null;
-                                                return InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    context.pushNamed(
-                                                        'CashSettlement');
-                                                  },
-                                                  child: Container(
-                                                    width: 250.0,
-                                                    decoration: BoxDecoration(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
-                                                      boxShadow: [
-                                                        BoxShadow(
-                                                          blurRadius: 4.0,
-                                                          color:
-                                                              Color(0x33000000),
-                                                          offset:
-                                                              Offset(0.0, 2.0),
-                                                        )
-                                                      ],
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                      border: Border.all(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .primaryBackground,
-                                                        width: 2.0,
-                                                      ),
-                                                    ),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsets.all(12.0),
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              formatNumber(
-                                                                taskDetailsStoreMerchantUnsettledBalanceRow
-                                                                    ?.unsettledBalance,
-                                                                formatType:
-                                                                    FormatType
-                                                                        .decimal,
-                                                                decimalType:
-                                                                    DecimalType
-                                                                        .periodDecimal,
-                                                                currency: 'Rp',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .displaySmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Outfit',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary,
+                                                                fontSize: 36.0,
                                                               ),
-                                                              'Rp0',
-                                                            ),
+                                                    ),
+                                                    Flexible(
+                                                      child: Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                -1.0, 1.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            'Unsettled Balance',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .displaySmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Outfit',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary,
-                                                                ),
-                                                          ),
-                                                          Flexible(
-                                                            child: Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      -1.0,
-                                                                      1.0),
-                                                              child: Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            4.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                child: Text(
-                                                                  'Unsettled Balance',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 8.0, 8.0, 8.0),
-                                        child: Container(
-                                          width: 216.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                blurRadius: 4.0,
-                                                color: Color(0x33000000),
-                                                offset: Offset(0.0, 2.0),
-                                              )
-                                            ],
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            border: Border.all(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                              width: 2.0,
-                                            ),
-                                          ),
-                                          child: Padding(
-                                            padding: EdgeInsets.all(12.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  '${valueOrDefault<String>(
-                                                    columnStoreMerchantDashboardRow
-                                                        ?.totalProductCount
-                                                        ?.toString(),
-                                                    '0',
-                                                  )} Product(s)'
-                                                      .maybeHandleOverflow(
-                                                    maxChars: 10,
-                                                    replacement: '…',
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .headlineLarge
-                                                      .override(
-                                                        fontFamily: 'Outfit',
-                                                        fontSize: 28.0,
-                                                      ),
-                                                ),
-                                                Flexible(
-                                                  child: Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            -1.0, 1.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  4.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        'Product Count',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
                                                                 .labelMedium,
+                                                          ),
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
+                                                  ],
                                                 ),
-                                              ],
-                                            ),
-                                          ),
+                                              ),
+                                            );
+                                          },
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 8.0, 16.0, 8.0),
+                                        padding: EdgeInsets.all(10.0),
                                         child: Container(
-                                          width: 250.0,
+                                          width: 350.0,
+                                          height: 120.0,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
@@ -474,7 +423,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                         ?.mostSoldProduct,
                                                     'None',
                                                   ).maybeHandleOverflow(
-                                                    maxChars: 20,
+                                                    maxChars: 25,
                                                     replacement: '…',
                                                   ),
                                                   style: FlutterFlowTheme.of(
@@ -517,13 +466,91 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                           ),
                                         ),
                                       ),
+                                      Padding(
+                                        padding: EdgeInsets.all(10.0),
+                                        child: Container(
+                                          width: 350.0,
+                                          height: 120.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                blurRadius: 4.0,
+                                                color: Color(0x33000000),
+                                                offset: Offset(0.0, 2.0),
+                                              )
+                                            ],
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              width: 2.0,
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(12.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  '${valueOrDefault<String>(
+                                                    columnStoreMerchantDashboardRow
+                                                        ?.totalProductCount
+                                                        ?.toString(),
+                                                    '0',
+                                                  )} Product(s)'
+                                                      .maybeHandleOverflow(
+                                                    maxChars: 15,
+                                                    replacement: '…',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .headlineLarge
+                                                      .override(
+                                                        fontFamily: 'Outfit',
+                                                        fontSize: 28.0,
+                                                      ),
+                                                ),
+                                                Flexible(
+                                                  child: Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1.0, 1.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  4.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        'Product Count',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 12.0, 16.0, 0.0),
+                                    26.0, 12.0, 26.0, 0.0),
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -608,7 +635,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(
+                                                    AutoSizeText(
                                                       valueOrDefault<String>(
                                                         formatNumber(
                                                           columnStoreMerchantDashboardRow
@@ -617,15 +644,17 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                               .decimal,
                                                           decimalType:
                                                               DecimalType
-                                                                  .periodDecimal,
+                                                                  .commaDecimal,
                                                           currency: 'Rp',
                                                         ),
                                                         'Rp0',
                                                       ),
+                                                      maxLines: 1,
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .displaySmall,
+                                                      minFontSize: 20.0,
                                                     ),
                                                     Padding(
                                                       padding:
@@ -658,17 +687,19 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(
+                                                    AutoSizeText(
                                                       '${valueOrDefault<String>(
                                                         columnStoreMerchantDashboardRow
                                                             ?.totalPurchases
                                                             ?.toString(),
                                                         '0',
                                                       )} Unit(s)',
+                                                      maxLines: 1,
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .displaySmall,
+                                                      minFontSize: 20.0,
                                                     ),
                                                     Padding(
                                                       padding:
@@ -690,7 +721,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 ),
                                               ),
                                             ),
-                                          ],
+                                          ].divide(SizedBox(width: 20.0)),
                                         ),
                                       ],
                                     ),
@@ -698,6 +729,334 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                 ).animateOnPageLoad(animationsMap[
                                     'containerOnPageLoadAnimation4']!),
                               ),
+                              if (false)
+                                Container(
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
+                                  constraints: BoxConstraints(
+                                    maxHeight: 140.0,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                  ),
+                                  child: Wrap(
+                                    spacing: 0.0,
+                                    runSpacing: 0.0,
+                                    alignment: WrapAlignment.start,
+                                    crossAxisAlignment:
+                                        WrapCrossAlignment.start,
+                                    direction: Axis.horizontal,
+                                    runAlignment: WrapAlignment.start,
+                                    verticalDirection: VerticalDirection.down,
+                                    clipBehavior: Clip.none,
+                                    children: [
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(-1.0, 0.0),
+                                        child: Padding(
+                                          padding: EdgeInsets.all(10.0),
+                                          child: FutureBuilder<
+                                              List<
+                                                  StoreMerchantUnsettledBalanceRow>>(
+                                            future:
+                                                StoreMerchantUnsettledBalanceTable()
+                                                    .querySingleRow(
+                                              queryFn: (q) => q.eq(
+                                                'merchant_id',
+                                                currentUserUid,
+                                              ),
+                                            ),
+                                            builder: (context, snapshot) {
+                                              // Customize what your widget looks like when it's loading.
+                                              if (!snapshot.hasData) {
+                                                return Center(
+                                                  child: SizedBox(
+                                                    width: 50.0,
+                                                    height: 50.0,
+                                                    child: SpinKitRipple(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondary,
+                                                      size: 50.0,
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                              List<StoreMerchantUnsettledBalanceRow>
+                                                  taskDetailsStoreMerchantUnsettledBalanceRowList =
+                                                  snapshot.data!;
+                                              final taskDetailsStoreMerchantUnsettledBalanceRow =
+                                                  taskDetailsStoreMerchantUnsettledBalanceRowList
+                                                          .isNotEmpty
+                                                      ? taskDetailsStoreMerchantUnsettledBalanceRowList
+                                                          .first
+                                                      : null;
+                                              return InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  context.pushNamed(
+                                                      'CashSettlement');
+                                                },
+                                                child: Container(
+                                                  width: 400.0,
+                                                  height: 120.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryBackground,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        blurRadius: 4.0,
+                                                        color:
+                                                            Color(0x33000000),
+                                                        offset:
+                                                            Offset(0.0, 2.0),
+                                                      )
+                                                    ],
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    border: Border.all(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
+                                                      width: 2.0,
+                                                    ),
+                                                  ),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsets.all(12.0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            formatNumber(
+                                                              taskDetailsStoreMerchantUnsettledBalanceRow
+                                                                  ?.unsettledBalance,
+                                                              formatType:
+                                                                  FormatType
+                                                                      .decimal,
+                                                              decimalType:
+                                                                  DecimalType
+                                                                      .periodDecimal,
+                                                              currency: 'Rp',
+                                                            ),
+                                                            'Rp0',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .displaySmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Outfit',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary,
+                                                              ),
+                                                        ),
+                                                        Flexible(
+                                                          child: Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    -1.0, 1.0),
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          4.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                'Unsettled Balance',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.all(10.0),
+                                        child: Container(
+                                          width: 300.0,
+                                          height: 120.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                blurRadius: 4.0,
+                                                color: Color(0x33000000),
+                                                offset: Offset(0.0, 2.0),
+                                              )
+                                            ],
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              width: 2.0,
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(12.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  valueOrDefault<String>(
+                                                    columnStoreMerchantDashboardRow
+                                                        ?.mostSoldProduct,
+                                                    'None',
+                                                  ).maybeHandleOverflow(
+                                                    maxChars: 25,
+                                                    replacement: '…',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .displaySmall
+                                                      .override(
+                                                        fontFamily: 'Outfit',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
+                                                        fontSize: 22.0,
+                                                      ),
+                                                ),
+                                                Flexible(
+                                                  child: Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1.0, 1.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  4.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        'Top Product',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.all(10.0),
+                                        child: Container(
+                                          width: 250.0,
+                                          height: 120.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                blurRadius: 4.0,
+                                                color: Color(0x33000000),
+                                                offset: Offset(0.0, 2.0),
+                                              )
+                                            ],
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              width: 2.0,
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(12.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  '${valueOrDefault<String>(
+                                                    columnStoreMerchantDashboardRow
+                                                        ?.totalProductCount
+                                                        ?.toString(),
+                                                    '0',
+                                                  )} Product(s)'
+                                                      .maybeHandleOverflow(
+                                                    maxChars: 15,
+                                                    replacement: '…',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .headlineLarge
+                                                      .override(
+                                                        fontFamily: 'Outfit',
+                                                        fontSize: 28.0,
+                                                      ),
+                                                ),
+                                                Flexible(
+                                                  child: Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1.0, 1.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  4.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        'Product Count',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                             ],
                           ),
                         );

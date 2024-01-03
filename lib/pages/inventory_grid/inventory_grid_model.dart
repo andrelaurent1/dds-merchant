@@ -9,7 +9,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'inventory_grid_widget.dart' show InventoryGridWidget;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -21,7 +20,7 @@ class InventoryGridModel extends FlutterFlowModel<InventoryGridWidget> {
 
   final unfocusNode = FocusNode();
   // Model for MasterSideNav component.
-  late MasterSideNavModel masterSideNavModel;
+  late MasterSideNavModel masterSideNavModel1;
   // State field(s) for ChoiceChips widget.
   String? choiceChipsValue;
   FormFieldController<List<String>>? choiceChipsValueController;
@@ -31,22 +30,26 @@ class InventoryGridModel extends FlutterFlowModel<InventoryGridWidget> {
   // Models for ActiveProductController dynamic component.
   late FlutterFlowDynamicModels<ActiveProductControllerModel>
       activeProductControllerModels2;
+  // Model for MasterSideNav component.
+  late MasterSideNavModel masterSideNavModel2;
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
-    masterSideNavModel = createModel(context, () => MasterSideNavModel());
+    masterSideNavModel1 = createModel(context, () => MasterSideNavModel());
     activeProductControllerModels1 =
         FlutterFlowDynamicModels(() => ActiveProductControllerModel());
     activeProductControllerModels2 =
         FlutterFlowDynamicModels(() => ActiveProductControllerModel());
+    masterSideNavModel2 = createModel(context, () => MasterSideNavModel());
   }
 
   void dispose() {
     unfocusNode.dispose();
-    masterSideNavModel.dispose();
+    masterSideNavModel1.dispose();
     activeProductControllerModels1.dispose();
     activeProductControllerModels2.dispose();
+    masterSideNavModel2.dispose();
   }
 
   /// Action blocks are added here.

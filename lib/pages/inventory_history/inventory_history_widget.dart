@@ -5,6 +5,7 @@ import '/cash/components/empty_list_widget_message/empty_list_widget_message_wid
 import '/cash/components/master_side_nav/master_side_nav_widget.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -69,18 +70,38 @@ class _InventoryHistoryWidgetState extends State<InventoryHistoryWidget>
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        drawer: Drawer(
+          elevation: 16.0,
+          child: Visibility(
+            visible: responsiveVisibility(
+              context: context,
+              tablet: false,
+              tabletLandscape: false,
+              desktop: false,
+            ),
+            child: wrapWithModel(
+              model: _model.masterSideNavModel2,
+              updateCallback: () => setState(() {}),
+              child: MasterSideNavWidget(),
+            ),
+          ),
+        ),
         body: SafeArea(
           top: true,
           child: Row(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              wrapWithModel(
-                model: _model.masterSideNavModel,
-                updateCallback: () => setState(() {}),
-                child: MasterSideNavWidget(),
-              ),
+              if (responsiveVisibility(
+                context: context,
+                phone: false,
+              ))
+                wrapWithModel(
+                  model: _model.masterSideNavModel1,
+                  updateCallback: () => setState(() {}),
+                  child: MasterSideNavWidget(),
+                ),
               Expanded(
                 child: Align(
                   alignment: AlignmentDirectional(0.0, -1.0),
@@ -90,26 +111,65 @@ class _InventoryHistoryWidgetState extends State<InventoryHistoryWidget>
                     constraints: BoxConstraints(
                       maxWidth: 1170.0,
                     ),
-                    decoration: BoxDecoration(),
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                    ),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              24.0, 16.0, 0.0, 0.0),
-                          child: Text(
-                            'Recent Activity',
-                            style: FlutterFlowTheme.of(context).headlineMedium,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              24.0, 4.0, 0.0, 0.0),
-                          child: Text(
-                            'Below are your most recent activity',
-                            textAlign: TextAlign.start,
-                            style: FlutterFlowTheme.of(context).labelMedium,
+                              16.0, 20.0, 16.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 5.0, 0.0, 5.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Recent Activity',
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineMedium,
+                                    ),
+                                    Text(
+                                      'Below are your most recent activity',
+                                      textAlign: TextAlign.start,
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelMedium,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              if (responsiveVisibility(
+                                context: context,
+                                tablet: false,
+                                tabletLandscape: false,
+                                desktop: false,
+                              ))
+                                Align(
+                                  alignment: AlignmentDirectional(1.0, 0.0),
+                                  child: FlutterFlowIconButton(
+                                    borderRadius: 20.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 40.0,
+                                    icon: Icon(
+                                      Icons.menu,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 24.0,
+                                    ),
+                                    onPressed: () async {
+                                      scaffoldKey.currentState!.openDrawer();
+                                    },
+                                  ),
+                                ),
+                            ],
                           ),
                         ),
                         Flexible(
@@ -130,7 +190,7 @@ class _InventoryHistoryWidgetState extends State<InventoryHistoryWidget>
                                     child: FlutterFlowButtonTabBar(
                                       useToggleButtonStyle: true,
                                       labelStyle: FlutterFlowTheme.of(context)
-                                          .titleMedium,
+                                          .titleSmall,
                                       unselectedLabelStyle: TextStyle(),
                                       labelColor: FlutterFlowTheme.of(context)
                                           .primaryText,
@@ -145,16 +205,15 @@ class _InventoryHistoryWidgetState extends State<InventoryHistoryWidget>
                                       unselectedBorderColor:
                                           FlutterFlowTheme.of(context)
                                               .alternate,
-                                      borderWidth: 2.0,
+                                      borderWidth: 0.0,
                                       borderRadius: 8.0,
                                       elevation: 0.0,
                                       buttonMargin:
                                           EdgeInsetsDirectional.fromSTEB(
                                               8.0, 0.0, 8.0, 0.0),
-                                      padding: EdgeInsets.all(4.0),
                                       tabs: [
                                         Tab(
-                                          text: 'New Purchases',
+                                          text: 'New',
                                         ),
                                         Tab(
                                           text: 'Wrong Input',

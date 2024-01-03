@@ -219,10 +219,6 @@ dynamic deserializeParam<T>(
             return StoreCartItemViewRow(data);
           case ProductCommandRow:
             return ProductCommandRow(data);
-          case BnplContractItemRow:
-            return BnplContractItemRow(data);
-          case BnplParameterRow:
-            return BnplParameterRow(data);
           case BnplAccountCommandRow:
             return BnplAccountCommandRow(data);
           case StoreCategoryExistViewRow:
@@ -261,8 +257,6 @@ dynamic deserializeParam<T>(
             return OrdersCommandRow(data);
           case StoreOrderSummaryViewRow:
             return StoreOrderSummaryViewRow(data);
-          case BnplContractRow:
-            return BnplContractRow(data);
           case StoreUnsettledOrderSummaryRow:
             return StoreUnsettledOrderSummaryRow(data);
           case UsersRow:
@@ -271,8 +265,6 @@ dynamic deserializeParam<T>(
             return StoreMerchantDashboardRow(data);
           case StoreOrderItemViewRow:
             return StoreOrderItemViewRow(data);
-          case BnplLimitRow:
-            return BnplLimitRow(data);
           case StoreInventoryViewRow:
             return StoreInventoryViewRow(data);
           case BnplParameterCommandRow:
@@ -285,8 +277,6 @@ dynamic deserializeParam<T>(
             return StoreCartSessionViewRow(data);
           case UserRoleViewRow:
             return UserRoleViewRow(data);
-          case BnplAccountRow:
-            return BnplAccountRow(data);
           default:
             return null;
         }

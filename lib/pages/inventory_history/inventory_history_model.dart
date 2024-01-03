@@ -5,6 +5,7 @@ import '/cash/components/empty_list_widget_message/empty_list_widget_message_wid
 import '/cash/components/master_side_nav/master_side_nav_widget.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -22,7 +23,7 @@ class InventoryHistoryModel extends FlutterFlowModel<InventoryHistoryWidget> {
 
   final unfocusNode = FocusNode();
   // Model for MasterSideNav component.
-  late MasterSideNavModel masterSideNavModel;
+  late MasterSideNavModel masterSideNavModel1;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -31,17 +32,21 @@ class InventoryHistoryModel extends FlutterFlowModel<InventoryHistoryWidget> {
   // State field(s) for ChoiceChips widget.
   String? choiceChipsValue;
   FormFieldController<List<String>>? choiceChipsValueController;
+  // Model for MasterSideNav component.
+  late MasterSideNavModel masterSideNavModel2;
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
-    masterSideNavModel = createModel(context, () => MasterSideNavModel());
+    masterSideNavModel1 = createModel(context, () => MasterSideNavModel());
+    masterSideNavModel2 = createModel(context, () => MasterSideNavModel());
   }
 
   void dispose() {
     unfocusNode.dispose();
-    masterSideNavModel.dispose();
+    masterSideNavModel1.dispose();
     tabBarController?.dispose();
+    masterSideNavModel2.dispose();
   }
 
   /// Action blocks are added here.

@@ -2,8 +2,8 @@ import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/cash/components/enter_p_i_n/enter_p_i_n_widget.dart';
 import '/cash/components/master_side_nav/master_side_nav_widget.dart';
-import '/cash/transaction_successfull_pop_up/transaction_successfull_pop_up_widget.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -24,7 +24,7 @@ class CashSettlementModel extends FlutterFlowModel<CashSettlementWidget> {
 
   final unfocusNode = FocusNode();
   // Model for MasterSideNav component.
-  late MasterSideNavModel masterSideNavModel;
+  late MasterSideNavModel masterSideNavModel1;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -46,17 +46,21 @@ class CashSettlementModel extends FlutterFlowModel<CashSettlementWidget> {
   FocusNode? messageFocusNode;
   TextEditingController? messageController;
   String? Function(BuildContext, String?)? messageControllerValidator;
+  // Model for MasterSideNav component.
+  late MasterSideNavModel masterSideNavModel2;
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
-    masterSideNavModel = createModel(context, () => MasterSideNavModel());
+    masterSideNavModel1 = createModel(context, () => MasterSideNavModel());
     dataTableShowLogs = false; // Disables noisy DataTable2 debug statements.
+    dataTableShowLogs = false; // Disables noisy DataTable2 debug statements.
+    masterSideNavModel2 = createModel(context, () => MasterSideNavModel());
   }
 
   void dispose() {
     unfocusNode.dispose();
-    masterSideNavModel.dispose();
+    masterSideNavModel1.dispose();
     tabBarController?.dispose();
     revenueFocusNode?.dispose();
     revenueController?.dispose();
@@ -69,6 +73,8 @@ class CashSettlementModel extends FlutterFlowModel<CashSettlementWidget> {
 
     messageFocusNode?.dispose();
     messageController?.dispose();
+
+    masterSideNavModel2.dispose();
   }
 
   /// Action blocks are added here.

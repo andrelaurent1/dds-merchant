@@ -55,4 +55,16 @@ class BnplContractCommandRow extends SupabaseDataRow {
   DateTime? get transactionDate => getField<DateTime>('transaction_date');
   set transactionDate(DateTime? value) =>
       setField<DateTime>('transaction_date', value);
+
+  String? get pin => getField<String>('pin');
+  set pin(String? value) => setField<String>('pin', value);
+
+  String? get pinKey => getField<String>('pin_key');
+  set pinKey(String? value) => setField<String>('pin_key', value);
+
+  String? get pinNonce => getField<String>('pin_nonce');
+  set pinNonce(String? value) => setField<String>('pin_nonce', value);
+
+  String? get pinRequestid => getField<String>('pin_requestid');
+  set pinRequestid(String? value) => setField<String>('pin_requestid', value);
 }

@@ -47,8 +47,15 @@ class _EditProductWidgetState extends State<EditProductWidget> {
         TextEditingController(text: widget.product?.description);
     _model.textFieldFocusNode1 ??= FocusNode();
 
-    _model.textController2 ??=
-        TextEditingController(text: widget.product?.price?.toString());
+    _model.textController2 ??= TextEditingController(
+        text: valueOrDefault<String>(
+      formatNumber(
+        widget.product?.price,
+        formatType: FormatType.decimal,
+        decimalType: DecimalType.commaDecimal,
+      ),
+      '0',
+    ));
     _model.textFieldFocusNode2 ??= FocusNode();
   }
 

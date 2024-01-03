@@ -2,6 +2,7 @@ import '/backend/supabase/supabase.dart';
 import '/cash/components/master_side_nav/master_side_nav_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -115,14 +116,34 @@ class _ManageInventoryWidgetState extends State<ManageInventoryWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        body: Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            wrapWithModel(
-              model: _model.masterSideNavModel,
+        drawer: Drawer(
+          elevation: 16.0,
+          child: Visibility(
+            visible: responsiveVisibility(
+              context: context,
+              tablet: false,
+              tabletLandscape: false,
+              desktop: false,
+            ),
+            child: wrapWithModel(
+              model: _model.masterSideNavModel2,
               updateCallback: () => setState(() {}),
               child: MasterSideNavWidget(),
             ),
+          ),
+        ),
+        body: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            if (responsiveVisibility(
+              context: context,
+              phone: false,
+            ))
+              wrapWithModel(
+                model: _model.masterSideNavModel1,
+                updateCallback: () => setState(() {}),
+                child: MasterSideNavWidget(),
+              ),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
@@ -146,20 +167,40 @@ class _ManageInventoryWidgetState extends State<ManageInventoryWidget>
                     padding: EdgeInsets.all(32.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Align(
-                          alignment: AlignmentDirectional(-1.0, 0.0),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 16.0),
-                            child: Text(
-                              'Manage Inventory',
-                              textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context).displaySmall,
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Align(
+                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 16.0),
+                                child: Text(
+                                  'Manage Inventory',
+                                  textAlign: TextAlign.center,
+                                  style:
+                                      FlutterFlowTheme.of(context).displaySmall,
+                                ),
+                              ),
                             ),
-                          ),
+                            FlutterFlowIconButton(
+                              borderRadius: 20.0,
+                              borderWidth: 1.0,
+                              buttonSize: 40.0,
+                              icon: Icon(
+                                Icons.menu,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                              onPressed: () async {
+                                scaffoldKey.currentState!.openDrawer();
+                              },
+                            ),
+                          ],
                         ),
                         Align(
                           alignment: AlignmentDirectional(-1.0, 0.0),
