@@ -193,7 +193,11 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                           child: Text(
                                             'Dashboard',
                                             style: FlutterFlowTheme.of(context)
-                                                .headlineMedium,
+                                                .headlineMedium
+                                                .override(
+                                                  fontFamily: 'Outfit',
+                                                  fontSize: 24.0,
+                                                ),
                                           ),
                                         ),
                                         Padding(

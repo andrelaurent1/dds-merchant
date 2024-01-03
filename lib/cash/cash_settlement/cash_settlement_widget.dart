@@ -188,8 +188,8 @@ class _CashSettlementWidgetState extends State<CashSettlementWidget>
                                         .primaryText,
                                     size: 24.0,
                                   ),
-                                  onPressed: () {
-                                    print('IconButton pressed ...');
+                                  onPressed: () async {
+                                    scaffoldKey.currentState!.openDrawer();
                                   },
                                 ),
                               ],

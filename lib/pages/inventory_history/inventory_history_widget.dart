@@ -135,7 +135,11 @@ class _InventoryHistoryWidgetState extends State<InventoryHistoryWidget>
                                     Text(
                                       'Recent Activity',
                                       style: FlutterFlowTheme.of(context)
-                                          .headlineMedium,
+                                          .headlineMedium
+                                          .override(
+                                            fontFamily: 'Outfit',
+                                            fontSize: 24.0,
+                                          ),
                                     ),
                                     Text(
                                       'Below are your most recent activity',

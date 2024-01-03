@@ -223,18 +223,16 @@ dynamic deserializeParam<T>(
             return BnplAccountCommandRow(data);
           case StoreCategoryExistViewRow:
             return StoreCategoryExistViewRow(data);
-          case CashSettlementCommandTableRow:
-            return CashSettlementCommandTableRow(data);
           case CartItemCommandRow:
             return CartItemCommandRow(data);
           case StoreCategoryViewRow:
             return StoreCategoryViewRow(data);
           case PaylaterBillViewRow:
             return PaylaterBillViewRow(data);
-          case InventoryCommandTableRow:
-            return InventoryCommandTableRow(data);
           case StoreUnsettledOrderRow:
             return StoreUnsettledOrderRow(data);
+          case InventoryCommandRow:
+            return InventoryCommandRow(data);
           case BnplContractCommandRow:
             return BnplContractCommandRow(data);
           case StorePaymentTypeViewRow:
@@ -249,8 +247,6 @@ dynamic deserializeParam<T>(
             return PaylaterContractViewRow(data);
           case StoreMerchantUnsettledBalanceRow:
             return StoreMerchantUnsettledBalanceRow(data);
-          case AccountRow:
-            return AccountRow(data);
           case StoreProductViewRow:
             return StoreProductViewRow(data);
           case OrdersCommandRow:
@@ -261,6 +257,8 @@ dynamic deserializeParam<T>(
             return StoreUnsettledOrderSummaryRow(data);
           case UsersRow:
             return UsersRow(data);
+          case CashSettlementCommandRow:
+            return CashSettlementCommandRow(data);
           case StoreMerchantDashboardRow:
             return StoreMerchantDashboardRow(data);
           case StoreOrderItemViewRow:
@@ -269,8 +267,6 @@ dynamic deserializeParam<T>(
             return StoreInventoryViewRow(data);
           case BnplParameterCommandRow:
             return BnplParameterCommandRow(data);
-          case AccountViewRow:
-            return AccountViewRow(data);
           case StoreCashSettlementViewRow:
             return StoreCashSettlementViewRow(data);
           case StoreCartSessionViewRow:

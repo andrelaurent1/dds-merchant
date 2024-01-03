@@ -1,20 +1,20 @@
 import '../database.dart';
 
-class CashSettlementCommandTableTable
-    extends SupabaseTable<CashSettlementCommandTableRow> {
+class CashSettlementCommandTable
+    extends SupabaseTable<CashSettlementCommandRow> {
   @override
-  String get tableName => 'cash_settlement_command_table';
+  String get tableName => 'cash_settlement_command';
 
   @override
-  CashSettlementCommandTableRow createRow(Map<String, dynamic> data) =>
-      CashSettlementCommandTableRow(data);
+  CashSettlementCommandRow createRow(Map<String, dynamic> data) =>
+      CashSettlementCommandRow(data);
 }
 
-class CashSettlementCommandTableRow extends SupabaseDataRow {
-  CashSettlementCommandTableRow(Map<String, dynamic> data) : super(data);
+class CashSettlementCommandRow extends SupabaseDataRow {
+  CashSettlementCommandRow(Map<String, dynamic> data) : super(data);
 
   @override
-  SupabaseTable get table => CashSettlementCommandTableTable();
+  SupabaseTable get table => CashSettlementCommandTable();
 
   String get id => getField<String>('id')!;
   set id(String value) => setField<String>('id', value);
@@ -22,8 +22,8 @@ class CashSettlementCommandTableRow extends SupabaseDataRow {
   String get op => getField<String>('op')!;
   set op(String value) => setField<String>('op', value);
 
-  DateTime get ts => getField<DateTime>('ts')!;
-  set ts(DateTime value) => setField<DateTime>('ts', value);
+  DateTime get createdAt => getField<DateTime>('created_at')!;
+  set createdAt(DateTime value) => setField<DateTime>('created_at', value);
 
   dynamic? get record => getField<dynamic>('record');
   set record(dynamic? value) => setField<dynamic>('record', value);

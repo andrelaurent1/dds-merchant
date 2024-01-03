@@ -50,9 +50,9 @@ Future processSettlement(
   double? profitSharing,
   DdsPinStruct? pinData,
 }) async {
-  CashSettlementCommandTableRow? insertCashSetllement;
+  CashSettlementCommandRow? insertCashSetllement;
 
-  insertCashSetllement = await CashSettlementCommandTableTable().insert({
+  insertCashSetllement = await CashSettlementCommandTable().insert({
     'op': 'INSERT',
     'revenue': revenue,
     'merchant_id': currentUserUid,

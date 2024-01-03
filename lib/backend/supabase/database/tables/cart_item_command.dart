@@ -21,8 +21,8 @@ class CartItemCommandRow extends SupabaseDataRow {
   String get op => getField<String>('op')!;
   set op(String value) => setField<String>('op', value);
 
-  DateTime get ts => getField<DateTime>('ts')!;
-  set ts(DateTime value) => setField<DateTime>('ts', value);
+  DateTime get createdAt => getField<DateTime>('created_at')!;
+  set createdAt(DateTime value) => setField<DateTime>('created_at', value);
 
   dynamic? get record => getField<dynamic>('record');
   set record(dynamic? value) => setField<dynamic>('record', value);

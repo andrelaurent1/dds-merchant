@@ -197,23 +197,29 @@ class _ManageInventoryFormsWidgetState extends State<ManageInventoryFormsWidget>
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Readex Pro',
-                                  fontSize: 36.0,
+                                  fontSize: 24.0,
                                 ),
                             minFontSize: 20.0,
                           ),
-                          FlutterFlowIconButton(
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 40.0,
-                            icon: Icon(
-                              Icons.menu,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
+                          if (responsiveVisibility(
+                            context: context,
+                            tablet: false,
+                            tabletLandscape: false,
+                            desktop: false,
+                          ))
+                            FlutterFlowIconButton(
+                              borderRadius: 20.0,
+                              borderWidth: 1.0,
+                              buttonSize: 40.0,
+                              icon: Icon(
+                                Icons.menu,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                              onPressed: () async {
+                                scaffoldKey.currentState!.openDrawer();
+                              },
                             ),
-                            onPressed: () async {
-                              scaffoldKey.currentState!.openDrawer();
-                            },
-                          ),
                         ].divide(SizedBox(width: 10.0)),
                       ),
                       Align(
@@ -969,8 +975,7 @@ class _ManageInventoryFormsWidgetState extends State<ManageInventoryFormsWidget>
                                               'Stock Dispute') ||
                                           (widget.stockUpdateReason ==
                                               'Damaged Product')) {
-                                        await InventoryCommandTableTable()
-                                            .insert({
+                                        await InventoryCommandTable().insert({
                                           'op': 'INSERT',
                                           'purchase_price': double.tryParse(
                                               _model.newPriceController.text),
@@ -983,8 +988,7 @@ class _ManageInventoryFormsWidgetState extends State<ManageInventoryFormsWidget>
                                           'approval_status': 'Pending',
                                         });
                                       } else {
-                                        await InventoryCommandTableTable()
-                                            .insert({
+                                        await InventoryCommandTable().insert({
                                           'purchase_price': double.tryParse(
                                               _model.newPriceController.text),
                                           'qty': valueOrDefault<int>(

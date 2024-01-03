@@ -312,7 +312,7 @@ class _EditWrongInputInventoryWidgetState
                             0.0, 24.0, 0.0, 44.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            await InventoryCommandTableTable().insert({
+                            await InventoryCommandTable().insert({
                               'op': 'INSERT',
                               'qty': _model.quantityValue! -
                                   widget.inventory!.qty!,

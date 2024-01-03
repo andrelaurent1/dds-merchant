@@ -1,20 +1,19 @@
 import '../database.dart';
 
-class InventoryCommandTableTable
-    extends SupabaseTable<InventoryCommandTableRow> {
+class InventoryCommandTable extends SupabaseTable<InventoryCommandRow> {
   @override
-  String get tableName => 'inventory_command_table';
+  String get tableName => 'inventory_command';
 
   @override
-  InventoryCommandTableRow createRow(Map<String, dynamic> data) =>
-      InventoryCommandTableRow(data);
+  InventoryCommandRow createRow(Map<String, dynamic> data) =>
+      InventoryCommandRow(data);
 }
 
-class InventoryCommandTableRow extends SupabaseDataRow {
-  InventoryCommandTableRow(Map<String, dynamic> data) : super(data);
+class InventoryCommandRow extends SupabaseDataRow {
+  InventoryCommandRow(Map<String, dynamic> data) : super(data);
 
   @override
-  SupabaseTable get table => InventoryCommandTableTable();
+  SupabaseTable get table => InventoryCommandTable();
 
   String get id => getField<String>('id')!;
   set id(String value) => setField<String>('id', value);
@@ -22,8 +21,8 @@ class InventoryCommandTableRow extends SupabaseDataRow {
   String get op => getField<String>('op')!;
   set op(String value) => setField<String>('op', value);
 
-  DateTime get ts => getField<DateTime>('ts')!;
-  set ts(DateTime value) => setField<DateTime>('ts', value);
+  DateTime get createdAt => getField<DateTime>('created_at')!;
+  set createdAt(DateTime value) => setField<DateTime>('created_at', value);
 
   dynamic? get record => getField<dynamic>('record');
   set record(dynamic? value) => setField<dynamic>('record', value);

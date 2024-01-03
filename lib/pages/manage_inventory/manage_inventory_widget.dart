@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -156,9 +157,7 @@ class _ManageInventoryWidgetState extends State<ManageInventoryWidget>
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     boxShadow: [
                       BoxShadow(
-                        blurRadius: 4.0,
                         color: Color(0x33000000),
-                        offset: Offset(0.0, 2.0),
                       )
                     ],
                     borderRadius: BorderRadius.circular(12.0),
@@ -179,27 +178,39 @@ class _ManageInventoryWidgetState extends State<ManageInventoryWidget>
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
-                                child: Text(
+                                child: AutoSizeText(
                                   'Manage Inventory',
                                   textAlign: TextAlign.center,
-                                  style:
-                                      FlutterFlowTheme.of(context).displaySmall,
+                                  style: FlutterFlowTheme.of(context)
+                                      .displaySmall
+                                      .override(
+                                        fontFamily: 'Outfit',
+                                        fontSize: 24.0,
+                                      ),
+                                  minFontSize: 20.0,
                                 ),
                               ),
                             ),
-                            FlutterFlowIconButton(
-                              borderRadius: 20.0,
-                              borderWidth: 1.0,
-                              buttonSize: 40.0,
-                              icon: Icon(
-                                Icons.menu,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 24.0,
+                            if (responsiveVisibility(
+                              context: context,
+                              tablet: false,
+                              tabletLandscape: false,
+                              desktop: false,
+                            ))
+                              FlutterFlowIconButton(
+                                borderRadius: 20.0,
+                                borderWidth: 1.0,
+                                buttonSize: 40.0,
+                                icon: Icon(
+                                  Icons.menu,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 24.0,
+                                ),
+                                onPressed: () async {
+                                  scaffoldKey.currentState!.openDrawer();
+                                },
                               ),
-                              onPressed: () async {
-                                scaffoldKey.currentState!.openDrawer();
-                              },
-                            ),
                           ],
                         ),
                         Align(

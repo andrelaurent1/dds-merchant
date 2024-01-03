@@ -125,7 +125,11 @@ class _InventoryGridWidgetState extends State<InventoryGridWidget> {
                                         child: Text(
                                           'Inventory',
                                           style: FlutterFlowTheme.of(context)
-                                              .headlineMedium,
+                                              .headlineMedium
+                                              .override(
+                                                fontFamily: 'Outfit',
+                                                fontSize: 24.0,
+                                              ),
                                         ),
                                       ),
                                       Padding(
@@ -141,20 +145,26 @@ class _InventoryGridWidgetState extends State<InventoryGridWidget> {
                                     ],
                                   ),
                                 ),
-                                FlutterFlowIconButton(
-                                  borderRadius: 20.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 40.0,
-                                  icon: Icon(
-                                    Icons.menu,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 24.0,
+                                if (responsiveVisibility(
+                                  context: context,
+                                  tablet: false,
+                                  tabletLandscape: false,
+                                  desktop: false,
+                                ))
+                                  FlutterFlowIconButton(
+                                    borderRadius: 20.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 40.0,
+                                    icon: Icon(
+                                      Icons.menu,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 24.0,
+                                    ),
+                                    onPressed: () async {
+                                      scaffoldKey.currentState!.openDrawer();
+                                    },
                                   ),
-                                  onPressed: () async {
-                                    scaffoldKey.currentState!.openDrawer();
-                                  },
-                                ),
                               ],
                             ),
                           ),
